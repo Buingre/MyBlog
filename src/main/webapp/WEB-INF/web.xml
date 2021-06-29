@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+                      http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1"
+         metadata-complete="false">
+
+
+<!-- 登录和注册接口 -->
+  <servlet>
+    <servlet-name>reg</servlet-name>
+    <servlet-class>service.RegLoginServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>reg</servlet-name>
+    <url-pattern>/reglogin</url-pattern>
+  </servlet-mapping>
+  <!-- 文章列表接口 -->
+  <servlet>
+    <servlet-name>myartlist</servlet-name>
+    <servlet-class>service.MyArtListServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>myartlist</servlet-name>
+    <url-pattern>/myartlist</url-pattern>
+  </servlet-mapping>
+  <!-- 文章删除接口 -->
+  <servlet>
+    <servlet-name>mydel</servlet-name>
+    <servlet-class>service.MyDelServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>mydel</servlet-name>
+    <url-pattern>/mydel</url-pattern>
+  </servlet-mapping>
+  <!-- 添加文章接口 -->
+  <servlet>
+    <servlet-name>addart</servlet-name>
+    <servlet-class>service.AddArtServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>addart</servlet-name>
+    <url-pattern>/addart</url-pattern>
+  </servlet-mapping>
+  <!-- 修改文章 -->
+  <servlet>
+    <servlet-name>updateart</servlet-name>
+    <servlet-class>service.UpdateArtServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>updateart</servlet-name>
+    <url-pattern>/updateart</url-pattern>
+  </servlet-mapping>
+  <!-- 文章修改初始化接口：显示要修改的文章的内容 -->
+  <servlet>
+    <servlet-name>initupdateart</servlet-name>
+    <servlet-class>service.InitUpdateArtServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>initupdateart</servlet-name>
+    <url-pattern>/initupdateart</url-pattern>
+  </servlet-mapping>
+
+</web-app>
+

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>修改文章</title>
+    <script src="jquery-1.9.1.min.js"></script>
+    <script>
+        //【数据显示】
+        //当页面加载完成之后，立即执行查询操作
+        // 文章的id
+        var id = 0;
+        jQuery(function () {
+            //1.获取文章的id--->从url里边获取。【上个界面articlelist跳转过来的时候就带着呢！】
+            //获取当前参数 = location.search(这个获得的参数形式 ?id=xxx)
+            var thisParameter = location.search.substring(1);//从第一个开始截取到末尾id=xxx【没包括问号】
+            id = thisParameter.split("=")[1];
+            //2.查询数据库信息并展示
+            jQuery.getJSON("initupdateart",{"id":id},function (data) {
+                    if (data!=null && data.state == 1){
+                        //文章的信息获取
+                        var articleinfo = data.art;
+                        //信息展示
+                        jQuery("#title").val(articleinfo.title);
+                        jQuery("#content").val(articleinfo.content);
+                    }else {
+                        alert("查询失败 "+data.msg)
+                    }
+                });
+        });
+
+
+
+        //【数据提交】
+        function mysub(type) {
+            var title = jQuery("#title");
+            var content = jQuery("#content");
+            if (type == 2){
+                //进行清空操作
+                if(confirm("是否确认清空？")){
+                    title.val("");
+                    content.val("");
+                }
+                return false;
+            }
+            //type == 1  提交操作
+            //1.先进行非空校验
+            //todo:前端的非空校验不用！=null？？
+            if(title.val().trim() == ""){
+                alert("请先输入标题");
+                title.focus();
+                return false;
+            }
+            if(content.val().trim() == ""){
+                alert("请先输入正文");
+                content.focus();
+                return false;
+            }
+            //2.修改之后 进行提交
+            jQuery.getJSON("updateart",{"id":id,"title":title.val(),"content":content.val()},
+                function (data) {
+                    //先进行非空校验
+                    if(data!=null && data.succ == 1){
+                        alert("修改操作成功！");
+                    } else {
+                        alert("抱歉：操作失败！  "+data.msg);
+                    }
+                });
+        }
+    </script>
+</head>
+<body>
+
+    <div style="margin-top: 40px;margin-left: 50px;">
+        <h1>文章修改</h1>
+        标题：<input id="title" name="title" type="text">
+        <p></p>
+        正文：<textarea style="width: 50%;height: 300px;" id="content" name="content">
+</textarea>
+        <p></p>
+        <input onclick="mysub(1)" value=" 提 交 " type="button">
+        <input onclick="mysub(2)" value=" 清 空 " type="button">
+    </div>
+</body>
+</html>
