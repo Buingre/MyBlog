@@ -25,7 +25,7 @@ public class ResultJSONUtils {
      */
     public static void writeMap(HttpServletResponse response, HashMap<String,Object> map) throws IOException {
         response.setCharacterEncoding("utf-8");
-        response.setContentType("appliction/json");
+        response.setContentType("application/json");
         PrintWriter writer = response.getWriter();
 
         ObjectMapper mapper = new ObjectMapper();

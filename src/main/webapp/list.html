@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>文章列表</title>
     <script src="jquery-1.9.1.min.js"></script>
+
     <script>
         //全局参数
         var currpage = 1;
@@ -29,7 +30,7 @@
             //【查询并返回数据】
             jQuery.getJSON("list",{
                 "cpage":currpage,//当前页码
-                "psize":2//每页展示的最大条数
+                "psize":6//每页展示的最大条数
             },function (data) {
                 if (data != null && data.succ == 1) {
                     //查询成功，拼接数据
@@ -73,11 +74,54 @@
 
         }
     </script>
+    <style>
+        td {
+            font-size: large;
+            font-weight: 700;
+            border: none;
+        }
+        a {
+            color: rgba(56, 95, 210, 0.75);
+            font-size: larger;
+            font-weight: bold;
+        }
+        a:hover{
+            color: rgba(30, 144, 255, 0.77);
+        }
+        #oncliklogin {
+            font-size: large;
+            margin-top: 30px;
+            margin-left: 75%;
+            text-decoration:none;
+            color: rgba(185, 149, 94, 0.75);
+        }
+        #oncliklogin:hover {
+            text-decoration:none;
+            color: dodgerblue;
+        }
+        table {
+
+            border-collapse: collapse;
+            border: 1px solid black;
+        }
+        tr {
+            height: 70px;
+            border: none;
+        }
+
+
+
+    </style>
 </head>
-<body>
-    <div style="margin-top: 30px;margin-left: 100px;text-align: center;">
-        <h1>所有文章列表</h1>
-        <table border="1" id="tab" style="width: 60%;margin-left: 200px;">
+<body style="background-image: url('dlzc/images/bg4.jpg')" >
+<p></p><br/>
+<img style="width: 8%;height: 5%;margin-left: 70%" src="dlzc/images/hi.gif" alt>
+
+<a id="oncliklogin" href="reglogin.html" >点击登录</a>
+    <div style="margin-top: 10px;margin-left: 90px;text-align: center;">
+
+        <h1 style="color:rgba(185, 149, 94, 0.75)">所有文章列表</h1>
+        <table border="1" id="tab" style="width: 70%;margin-left: 150px;">
             <tr>
                 <td>编号</td>
                 <td>标题</td>
@@ -86,9 +130,10 @@
                 <td>作者</td>
             </tr>
         </table>
+        <br/>
         <hr>
-        <a href="javascript:mypage(1)">上一页</a> <a href="javascript:mypage(2)">下一页</a>
-
+        <a href="javascript:mypage(1)">上一页</a>&nbsp;&nbsp; <a href="javascript:mypage(2)">下一页</a>
+        <br/><p>&nbsp;</p><p>&nbsp;</p>
     </div>
 
 </body>

@@ -13,23 +13,38 @@ import java.sql.SQLException;
  * 2.提供统一的关闭方法
  */
 public class DBUtils {
+
     private static MysqlDataSource dataSource = null;
 
     /**
      * 对外提供统一的 Connection 对象
      */
     public static Connection getConnect() throws SQLException {
-        if(dataSource==null){//说明首次调用，先初始化
+        if(dataSource == null){
+            //首次调用，先初始化
             dataSource = new MysqlDataSource();
             // 1.设置连接的服务器地址
-            dataSource.setURL("jdbc:mysql://127.0.0.1:3306/myblog?characterEncoding=utf-8&useSSL=true");
+            //dataSource.setURL("jdbc:mysql://127.0.0.1:3306/myblog?characterEncoding=utf-8&useSSL=true");
+            //云服务器
+            dataSource.setURL("jdbc:mysql://localhost:3306/myblog");
             dataSource.setUser("root");
             dataSource.setPassword("233233");
+            //DS.setUseSSL(false);
+            dataSource.setCharacterEncoding("UTF-8");
+//            dataSource.setURL("jdbc:mysql://127.0.0.1:3306/myblog?characterEncoding=utf-8");
+//            dataSource.setUser("root");
+//            //dataSource.setPassword("233233");//本机的
+//            dataSource.setPassword("12345678");//云服务器
+
         }
         return dataSource.getConnection();
     }
+
     /**
-     * 对外提供统一的关闭方法
+     * 统一的关闭方法
+     * @param connection
+     * @param statement
+     * @param resultSet
      */
     public static void close(Connection connection, PreparedStatement statement, ResultSet resultSet) throws SQLException {
         if(resultSet!=null) resultSet.close();
